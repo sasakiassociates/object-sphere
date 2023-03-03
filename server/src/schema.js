@@ -51,7 +51,8 @@ const typeDefs = gql`
         y : Float!
         z : Float!
         meta : String
-    }
+    }   
+    
     type Query {
         results : [ResultCloud]!
         result(id : ID!) : ResultCloud
@@ -63,11 +64,19 @@ const typeDefs = gql`
         message : String
         values : [ResultCloudData!]!
     }
+    
+    type SpeckleObj {
+        speckle__type : String!
+    }
 
     type Mutation{
         setResults(id : ID!) : SetResultsResponse!
         addResults(id : ID!) : SetResultsResponse!
 
+    }
+    
+    type Program {
+        id : ID!
     }
 `;
 
