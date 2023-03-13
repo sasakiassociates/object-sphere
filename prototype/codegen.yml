@@ -2,6 +2,9 @@ schema:
   src:
     - schema.graphql
 generates:
-  types.ts:
-    plugins:
-      - typescript
+    types/types.ts:
+      plugins:
+        - typescript
+    types/Types.cs:
+      plugins:
+        - c-sharp

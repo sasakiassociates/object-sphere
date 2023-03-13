@@ -1,5 +1,38 @@
-type Point {
+interface Point {
     x: Int!
     y: Int!
     z: Int!
+}
+
+interface Normals implements Point {
+    x: Int!
+    y: Int!
+    z: Int!
+}
+
+interface Bounds implements Point {
+    x: Int!
+    y: Int!
+    z: Int!
+}
+
+interface NormalPoint {
+    Normals: Normals!
+    Point: Point!
+}
+
+interface ResultCloudData {
+    some: String
+    data: String
+    right: String
+    here: String
+}
+
+interface ResultCloud {
+    NormalPoint: [NormalPoint!]!
+    ResultCloudData: ResultCloudData!
+}
+
+interface Result {
+    ResultCloud: [ResultCloud!]!
 }
