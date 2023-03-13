@@ -4,7 +4,7 @@ interface Point {
     z: Int!
 }
 
-interface Normals implements Point {
+interface Normal implements Point {
     x: Int!
     y: Int!
     z: Int!
@@ -17,7 +17,7 @@ interface Bounds implements Point {
 }
 
 interface NormalPoint {
-    Normals: Normals!
+    Normal: Normal!
     Point: Point!
 }
 

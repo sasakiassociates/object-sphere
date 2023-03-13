@@ -18,15 +18,15 @@ export type Bounds = {
   z: Scalars['Int'];
 };
 
-export type NormalPoint = {
-  Normals: Normals;
-  Point: Point;
-};
-
-export type Normals = {
+export type Normal = {
   x: Scalars['Int'];
   y: Scalars['Int'];
   z: Scalars['Int'];
+};
+
+export type NormalPoint = {
+  Normal: Normal;
+  Point: Point;
 };
 
 export type Point = {

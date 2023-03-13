@@ -17,15 +17,7 @@ namespace GraphQLCodeGen {
       int z { get; set; }
     }
     
-    public interface NormalPoint {
-      [JsonProperty("Normals")]
-      Normals Normals { get; set; }
-    
-      [JsonProperty("Point")]
-      Point Point { get; set; }
-    }
-    
-    public interface Normals {
+    public interface Normal {
       [JsonProperty("x")]
       int x { get; set; }
     
@@ -34,6 +26,14 @@ namespace GraphQLCodeGen {
     
       [JsonProperty("z")]
       int z { get; set; }
+    }
+    
+    public interface NormalPoint {
+      [JsonProperty("Normal")]
+      Normal Normal { get; set; }
+    
+      [JsonProperty("Point")]
+      Point Point { get; set; }
     }
     
     public interface Point {
