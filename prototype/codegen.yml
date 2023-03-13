@@ -1,0 +1,10 @@
+schema:
+  src:
+    - schema.graphql
+generates:
+    types/types.ts:
+      plugins:
+        - typescript
+    types/Types.cs:
+      plugins:
+        - c-sharp
