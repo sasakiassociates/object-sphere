@@ -1,5 +1,11 @@
-const typeDefs = gql`
+const {gql} = require("apollo-server");
 
+const typeDefs = gql`
+    
+    type Query {
+        getObject(id : ID!) : SasakiObject 
+    }
+    
     "A set of statuses a Content type would utilize in a View Study"
     enum ViewContentType {
         "The potential content item used to gather the max amount of pixels in a view"
@@ -72,7 +78,5 @@ const typeDefs = gql`
     }
 
 `;
-
-const {gql} = require("apollo-server");
 
 module.exports = typeDefs;``
