@@ -1,21 +1,6 @@
 const typeDefs = gql`
 
-    type Query {
-        "Grab all result clouds from a specific stream"
-        results(streamId : ID!) : [ResultCloud]
-        "Grab a specific result cloud from a specific stream type"
-        result(id : ID!) : ResultCloud
-        data(target : ID!, content : ID! ,type : ViewContentType!) : ResultCloudData
-    }
-
-    type Mutation{
-        setResults(id : ID!) : SetResultsResponse!
-        addResults(id : ID!) : SetResultsResponse!
-    }
-
-    """
-    A set of statuses a Content type would utilize in a View Study
-    """
+    "A set of statuses a Content type would utilize in a View Study"
     enum ViewContentType {
         "The potential content item used to gather the max amount of pixels in a view"
         TARGET
@@ -24,7 +9,7 @@ const typeDefs = gql`
         "Optional content items that gives studies the ability to have multiple scenarios"
         PROPOSED
     }
-    
+
     "A simple object used for Sasaki projects"
     interface SasakiObject {
         "The id related to the reference object id"
@@ -32,7 +17,7 @@ const typeDefs = gql`
         "An optional name for the object"
         name : String
     }
-    
+
     "A simple container object that is mainly used for acting as an anchor point for a specific workflow type"
     interface SasakiContainer{
         "The id related to the reference object id"
@@ -40,59 +25,54 @@ const typeDefs = gql`
         "An optional name for the object"
         name : String
         "The items it contains"
-        data : [SasakiObject!]!
+        objects : [SasakiObject!]!
     }
 
-    type ViewStudy implements SasakiContainer {
-        "The id related to the reference object id"
+
+    type ViewCloud implements SasakiObject {
         id: ID!
-        "An optional name for the object"
         name : String
-        "The items it contains"
-        data : [SasakiObject!]!
-    }
-
-    # schema here
-    type ViewCloud {
-        id: ID!
         points : [CloudPoint]
     }
 
-    type ViewContentOption{
-        target : ID!
-        content : ID!
-        type : ViewContentType!
-    }
 
-    type ResultCloudData {
-        values : [Int]!
-        option : ViewContentOption!
-    }
-
-    type ResultCloud {
+    type NormalCloud implements SasakiObject {
         id: ID!
-        points : [CloudPoint]
-        data : [ResultCloudData]
+        name : String
+        normals : [NormalPoint]
     }
 
-    type Content {
-        id : ID!
+    type CloudPoint  {
+        point : Vector!
+        meta : String
     }
 
+    type NormalPoint {
+        point : Point!
+        normal : Normal!
+        meta : String
+    }
 
-    type CloudPoint {
+    interface Point implements Vector{
         x : Float!
         y : Float!
         z : Float!
-        meta : String
     }
-    type SetResultsResponse {
-        success : Boolean!
-        message : String
-        values : [ResultCloudData!]!
+
+    interface Normal implements Vector{
+        x : Float!
+        y : Float!
+        z : Float!
     }
+
+    interface Vector{
+        x : Float!
+        y : Float!
+        z : Float!
+    }
+
 `;
 
 const {gql} = require("apollo-server");
 
-module.exports = typeDefs;
+module.exports = typeDefs;``
