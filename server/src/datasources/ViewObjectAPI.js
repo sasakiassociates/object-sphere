@@ -13,7 +13,6 @@ class ViewObjectAPI extends RESTDataSource {
     getResult(objectId) {
         return this.get(`objects/`)
     }
-
 }
 
 module.exports = ViewObjectAPI;

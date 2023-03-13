@@ -6,6 +6,9 @@ const resolvers = {
         },
         result: (_, __, {dataSources}) => {
             return dataSources.viewObjectAPI.getObject();
+        },
+        study:({streamId, objectId}, _, {dataSources})=>{
+            return dataSources.viewObjectAPI.getObject(streamId, objectId);
         }
     },
     ResultCloudData: {

@@ -20,9 +20,13 @@ const typeDefs = gql`
         PROPOSED
     }
     # schema here
-    type ViewCloud {
+    type PointCloud {
         id: ID!
-        points : [CloudPoint]
+        points : [Point]
+    }
+
+    type ViewStudy {
+        id: ID!
     }
 
     type ViewContentOption{
@@ -38,7 +42,7 @@ const typeDefs = gql`
 
     type ResultCloud {
         id: ID!
-        points : [CloudPoint]
+        points : [Point]
         data : [ResultCloudData]
     }
 
@@ -46,17 +50,18 @@ const typeDefs = gql`
         id : ID!
     }
 
-    type CloudPoint {
+    type Point {
         x : Float!
         y : Float!
         z : Float!
         meta : String
-    }   
-    
+    }
+
     type Query {
         results : [ResultCloud]!
         result(id : ID!) : ResultCloud
         data(target : ID!, content : ID! ,type : ViewContentType!) : ResultCloudData
+        study(streamId : String!, objectId : String!) : ViewStudy
     }
 
     type SetResultsResponse {
@@ -64,7 +69,7 @@ const typeDefs = gql`
         message : String
         values : [ResultCloudData!]!
     }
-    
+
     type SpeckleObj {
         speckle__type : String!
     }
@@ -74,7 +79,7 @@ const typeDefs = gql`
         addResults(id : ID!) : SetResultsResponse!
 
     }
-    
+
     type Program {
         id : ID!
     }

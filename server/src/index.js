@@ -4,11 +4,12 @@ const {ApolloServer} = require("apollo-server");
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
 const ViewObjectAPI = require("./datasources/ViewObjectAPI");
+const NudgeAPI = require("./datasources/NudgeAPI");
 
 const mockUp = {
     ResultCloud: () => ({
         id: () => "12345",
-        points : () =>
+        points: () =>
             Array.form({length: 100}, () => ({
                 CloudPoint: () => ({
                         x: () => 1,
@@ -36,6 +37,7 @@ const server = new ApolloServer({
     dataSources: () => {
         return {
             viewObjectAPI: new ViewObjectAPI(),
+            nudgeAPI : new NudgeAPI(),
         }
     }
 });
