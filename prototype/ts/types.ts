@@ -12,12 +12,6 @@ export type Scalars = {
   Float: number;
 };
 
-export type Bounds = {
-  x: Scalars['Int'];
-  y: Scalars['Int'];
-  z: Scalars['Int'];
-};
-
 export type Normal = {
   x: Scalars['Int'];
   y: Scalars['Int'];

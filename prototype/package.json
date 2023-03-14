@@ -2,15 +2,18 @@
   "name": "prototype",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "generate": "graphql-codegen"
+    "generate": "graphql-codegen",
+    "pretest:ts": "npx tsc --experimentalDecorators --skipLibCheck --target es5 tests/ts.test.ts",
+    "test:ts": "node tests/ts.test.js",
+    "posttest:ts": "rm **/*.js",
+    "prepublish": "npm run test:ts"
   },
-  "keywords": [],
   "author": "",
-  "license": "ISC",
   "dependencies": {
-    "graphql": "^16.6.0"
+    "graphql": "^16.6.0",
+    "mobx": "^6.8.0",
+    "mobx-keystone": "^1.4.1"
   },
   "devDependencies": {
     "@graphql-codegen/c-sharp": "^4.3.1",
