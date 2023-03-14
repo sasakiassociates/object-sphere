@@ -10,12 +10,6 @@ interface Normal implements Point {
     z: Int!
 }
 
-interface Bounds implements Point {
-    x: Int!
-    y: Int!
-    z: Int!
-}
-
 interface NormalPoint {
     Normal: Normal!
     Point: Point!

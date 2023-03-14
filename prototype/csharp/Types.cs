@@ -6,17 +6,6 @@ using Newtonsoft.Json;
 namespace GraphQLCodeGen {
   public class Types {
     
-    public interface Bounds {
-      [JsonProperty("x")]
-      int x { get; set; }
-    
-      [JsonProperty("y")]
-      int y { get; set; }
-    
-      [JsonProperty("z")]
-      int z { get; set; }
-    }
-    
     public interface Normal {
       [JsonProperty("x")]
       int x { get; set; }
