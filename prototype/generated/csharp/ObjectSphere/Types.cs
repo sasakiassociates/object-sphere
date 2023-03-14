@@ -24,6 +24,40 @@ namespace Sasaki.Objects {
     }
     #endregion
     
+    #region BoxInput
+    public class BoxInput {
+      #region members
+      public double? xsize { get; set; }
+    
+      public double? ysize { get; set; }
+    
+      public double? zsize { get; set; }
+      #endregion
+    
+      #region methods
+      public dynamic GetInputObject()
+      {
+        IDictionary<string, object> d = new System.Dynamic.ExpandoObject();
+    
+        var properties = GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+        foreach (var propertyInfo in properties)
+        {
+          var value = propertyInfo.GetValue(this);
+          var defaultValue = propertyInfo.PropertyType.IsValueType ? Activator.CreateInstance(propertyInfo.PropertyType) : null;
+    
+          var requiredProp = propertyInfo.GetCustomAttributes(typeof(JsonRequiredAttribute), false).Length > 0;
+    
+          if (requiredProp || value != defaultValue)
+          {
+            d[propertyInfo.Name] = value;
+          }
+        }
+        return d;
+      }
+      #endregion
+    }
+    #endregion
+    
     #region CloudPoint
     public class CloudPoint {
       #region members
@@ -31,21 +65,25 @@ namespace Sasaki.Objects {
       public string meta { get; set; }
     
       [JsonProperty("point")]
-      public Vector point { get; set; }
+      public Point point { get; set; }
       #endregion
     }
     #endregion
     
-    public interface Normal {
+    #region Normal
+    public class Normal : Vector {
+      #region members
       [JsonProperty("x")]
-      double x { get; set; }
+      public double x { get; set; }
     
       [JsonProperty("y")]
-      double y { get; set; }
+      public double y { get; set; }
     
       [JsonProperty("z")]
-      double z { get; set; }
+      public double z { get; set; }
+      #endregion
     }
+    #endregion
     
     #region NormalCloud
     public class NormalCloud : SasakiObject {
@@ -77,16 +115,20 @@ namespace Sasaki.Objects {
     }
     #endregion
     
-    public interface Point {
+    #region Point
+    public class Point : Vector {
+      #region members
       [JsonProperty("x")]
-      double x { get; set; }
+      public double x { get; set; }
     
       [JsonProperty("y")]
-      double y { get; set; }
+      public double y { get; set; }
     
       [JsonProperty("z")]
-      double z { get; set; }
+      public double z { get; set; }
+      #endregion
     }
+    #endregion
     
     #region Query
     public class Query {
@@ -96,6 +138,33 @@ namespace Sasaki.Objects {
     
       [JsonProperty("getPoints")]
       public List<CloudPoint> getPoints { get; set; }
+      #endregion
+    }
+    #endregion
+    
+    #region ResultCloud
+    public class ResultCloud {
+      #region members
+      [JsonProperty("data")]
+      public List<ResultCloudData> data { get; set; }
+    
+      [JsonProperty("id")]
+      public string id { get; set; }
+    
+      [JsonProperty("points")]
+      public List<CloudPoint> points { get; set; }
+      #endregion
+    }
+    #endregion
+    
+    #region ResultCloudData
+    public class ResultCloudData {
+      #region members
+      [JsonProperty("option")]
+      public ViewContentOption option { get; set; }
+    
+      [JsonProperty("values")]
+      public List<int?> values { get; set; }
       #endregion
     }
     #endregion
@@ -162,6 +231,21 @@ namespace Sasaki.Objects {
     
       [JsonProperty("points")]
       public List<CloudPoint> points { get; set; }
+      #endregion
+    }
+    #endregion
+    
+    #region ViewContentOption
+    public class ViewContentOption {
+      #region members
+      [JsonProperty("content")]
+      public string content { get; set; }
+    
+      [JsonProperty("target")]
+      public string target { get; set; }
+    
+      [JsonProperty("type")]
+      public ViewContentType type { get; set; }
       #endregion
     }
     #endregion

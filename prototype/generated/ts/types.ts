@@ -20,13 +20,20 @@ export type Box = {
   zsize?: Maybe<Scalars['Float']>;
 };
 
+export type BoxInput = {
+  xsize?: InputMaybe<Scalars['Float']>;
+  ysize?: InputMaybe<Scalars['Float']>;
+  zsize?: InputMaybe<Scalars['Float']>;
+};
+
 export type CloudPoint = {
   __typename?: 'CloudPoint';
   meta?: Maybe<Scalars['String']>;
-  point: Vector;
+  point: Point;
 };
 
-export type Normal = {
+export type Normal = Vector & {
+  __typename?: 'Normal';
   x: Scalars['Float'];
   y: Scalars['Float'];
   z: Scalars['Float'];
@@ -46,7 +53,8 @@ export type NormalPoint = {
   point: Point;
 };
 
-export type Point = {
+export type Point = Vector & {
+  __typename?: 'Point';
   x: Scalars['Float'];
   y: Scalars['Float'];
   z: Scalars['Float'];
@@ -65,7 +73,20 @@ export type QueryGetObjectArgs = {
 
 
 export type QueryGetPointsArgs = {
-  box?: InputMaybe<Box>;
+  box?: InputMaybe<BoxInput>;
+};
+
+export type ResultCloud = {
+  __typename?: 'ResultCloud';
+  data?: Maybe<Array<Maybe<ResultCloudData>>>;
+  id: Scalars['ID'];
+  points?: Maybe<Array<Maybe<CloudPoint>>>;
+};
+
+export type ResultCloudData = {
+  __typename?: 'ResultCloudData';
+  option: ViewContentOption;
+  values: Array<Maybe<Scalars['Int']>>;
 };
 
 /** A simple container object that is mainly used for acting as an anchor point for a specific workflow type */
@@ -97,6 +118,13 @@ export type ViewCloud = SasakiObject & {
   id: Scalars['ID'];
   name?: Maybe<Scalars['String']>;
   points?: Maybe<Array<Maybe<CloudPoint>>>;
+};
+
+export type ViewContentOption = {
+  __typename?: 'ViewContentOption';
+  content: Scalars['ID'];
+  target: Scalars['ID'];
+  type: ViewContentType;
 };
 
 /** A set of statuses a Content type would utilize in a View Study */
