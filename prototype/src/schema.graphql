@@ -51,7 +51,7 @@ type NormalCloud implements SasakiObject {
 
 
 type CloudPoint {
-  point: Vector!
+  point: Point!
   meta: String
 }
 
@@ -61,13 +61,13 @@ type NormalPoint {
   meta: String
 }
 
-interface Point implements Vector {
+type Point implements Vector {
   x: Float!
   y: Float!
   z: Float!
 }
 
-interface Normal implements Vector {
+type Normal implements Vector {
   x: Float!
   y: Float!
   z: Float!
