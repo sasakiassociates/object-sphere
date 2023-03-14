@@ -1,6 +1,12 @@
 node_modules
 .DS_Store
 .env
-.idea/
 *.js
-/obj/*
+
+#rider stuff
+.idea/
+*.cache
+
+# .NET stuff 
+*obj/
+*bin/
