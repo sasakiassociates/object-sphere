@@ -2,6 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Object Sphere</Title>
+        <Authors>Sasaki</Authors>
+        <Description>A generated object library  </Description>
+        <Company>Sasaki</Company>
     </PropertyGroup>
 
     <ItemGroup>
