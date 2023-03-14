@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <AssemblyName>Sasaki.Objects.Speckle</AssemblyName>
+        <RootNamespace>Sasaki.Objects.Speckle</RootNamespace>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Sasaki Objects Speckle</Title>
+        <Authors>Sasaki</Authors>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Speckle.Core" Version="2.11.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ObjectSphere\ObjectSphere.csproj" />
+    </ItemGroup>
+
+</Project>
