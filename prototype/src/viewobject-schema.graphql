@@ -7,3 +7,20 @@ enum ViewContentType {
   "Optional content items that gives studies the ability to have multiple scenarios"
   PROPOSED
 }
+
+type ViewContentOption{
+  target : ID!
+  content : ID!
+  type : ViewContentType!
+}
+
+type ResultCloudData {
+  values : [Int]!
+  option : ViewContentOption!
+}
+
+type ResultCloud {
+  id: ID!
+  points : [CloudPoint]
+  data : [ResultCloudData]
+}

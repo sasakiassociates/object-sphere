@@ -1,6 +1,6 @@
 type Query {
   getObject(id: ID!): SasakiObject
-  getPoints(box: Box): [CloudPoint]
+  getPoints(box: BoxInput): [CloudPoint]
 }
 
 
@@ -22,6 +22,13 @@ interface SasakiContainer {
   objects: [SasakiObject!]!
 }
 
+
+input BoxInput{
+  xsize: Float
+  ysize: Float
+  zsize: Float
+}
+
 type Box {
   center: CloudPoint
   xsize: Float
@@ -40,6 +47,8 @@ type NormalCloud implements SasakiObject {
   name: String
   normals: [NormalPoint]
 }
+
+
 
 type CloudPoint {
   point: Vector!
