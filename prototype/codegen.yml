@@ -5,6 +5,6 @@ generates:
     ts/types.ts:
       plugins:
         - typescript
-    c#/Types.cs:
+    csharp/Types.cs:
       plugins:
         - c-sharp
