@@ -2,9 +2,14 @@ schema:
   src:
     - schema.graphql
 generates:
-    ts/types.ts:
+    generated/ts/types.ts:
       plugins:
         - typescript
-    c#/Types.cs:
+    generated/csharp/ObjectSphere/Types.cs:
+      config:   
+        namespaceName: Sasaki.Objects 
+        querySuffix: QuerySphere
+        mutationSuffix: MutationSphere
+        subscriptionSuffix: SubscriptionSphere
       plugins:
         - c-sharp
