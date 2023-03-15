@@ -15,12 +15,12 @@ type ViewContentOption{
 }
 
 type ResultCloudData {
-  values : [Int]!
+  value : [Int]!
   option : ViewContentOption!
 }
 
 type ResultCloud {
   id: ID!
-  points : [CloudPoint]
+  point : [Point]
   data : [ResultCloudData]
 }

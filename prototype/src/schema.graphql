@@ -1,58 +1,25 @@
-type Query {
-  getObject(id: ID!): SasakiObject
-  getPoints(box: BoxInput): [CloudPoint]
-}
-
-
-"A simple object used for Sasaki projects"
 interface SasakiObject {
-  "The id related to the reference object id"
   id: ID!
-  "An optional name for the object"
   name: String
-}
-
-"A simple container object that is mainly used for acting as an anchor point for a specific workflow type"
-interface SasakiContainer {
-  "The id related to the reference object id"
-  id: ID!
-  "An optional name for the object"
-  name: String
-  "The items it contains"
-  objects: [SasakiObject!]!
-}
-
-
-input BoxInput{
-  xsize: Float
-  ysize: Float
-  zsize: Float
 }
 
 type Box {
-  center: CloudPoint
-  xsize: Float
-  ysize: Float
+  center: Point
+  xSize: Float
+  yize: Float
   zsize: Float
 }
 
-type ViewCloud implements SasakiObject {
+interface PointCloud implements  SasakiObject{
   id: ID!
   name: String
-  points: [CloudPoint]
+  point: [Point]
 }
 
 type NormalCloud implements SasakiObject {
   id: ID!
   name: String
-  normals: [NormalPoint]
-}
-
-
-
-type CloudPoint {
-  point: Point!
-  meta: String
+  normal: [NormalPoint]
 }
 
 type NormalPoint {
