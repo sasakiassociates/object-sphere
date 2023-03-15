@@ -15,7 +15,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\object-sphere\prototype\generated\csharp\ObjectSphere\ObjectSphere.csproj" />
       <ProjectReference Include="..\ObjectSphere\ObjectSphere.csproj" />
     </ItemGroup>
 

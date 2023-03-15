@@ -9,12 +9,14 @@
         <Authors>Sasaki</Authors>
     </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Speckle.Core" Version="2.11.1" />
-    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\ObjectSphere\ObjectSphere.csproj" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <PackageReference Include="Speckle.Core" Version="2.11.1" />
     </ItemGroup>
 
 </Project>
