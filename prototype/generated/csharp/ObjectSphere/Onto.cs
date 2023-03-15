@@ -1,16 +1,48 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
 namespace Sasaki.Objects
 {
 
-  public abstract class Onto
+  public class Onto
   {
     public static readonly string[] __internals = {"__internals", "isOnto"};
 
     Dictionary<string, object> _objects = new Dictionary<string, object>();
 
+    public object this[string key]
+    {
+      get
+      {
+        if(_objects.ContainsKey(key)) return _objects[key];
+
+        var prop = GetType().GetProperty(key);
+
+        return prop == null ? null : prop.GetValue(this);
+      }
+      set
+      {
+
+        if(_objects.ContainsKey(key))
+        {
+          _objects[key] = value;
+          return;
+        }
+
+        var prop = this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public).FirstOrDefault(p => p.Name == key);
+
+        if(prop == null)
+        {
+          _objects[key] = value;
+          return;
+        }
+
+        prop.SetValue(this, value);
+
+      }
+    }
     public IEnumerable<object> children
     {
       get
@@ -27,6 +59,8 @@ namespace Sasaki.Objects
 
       }
     }
+
+
 
     /// <summary>
     /// Recursive search through all objects in the class
@@ -84,38 +118,8 @@ namespace Sasaki.Objects
       return default(TObj);
     }
 
-
-    public object this[string key]
-    {
-      get
-      {
-        if(_objects.ContainsKey(key)) return _objects[key];
-
-        var prop = GetType().GetProperty(key);
-
-        return prop == null ? null : prop.GetValue(this);
-      }
-      set
-      {
-
-        if(_objects.ContainsKey(key))
-        {
-          _objects[key] = value;
-          return;
-        }
-
-        var prop = this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public).FirstOrDefault(p => p.Name == key);
-
-        if(prop == null)
-        {
-          _objects[key] = value;
-          return;
-        }
-
-        prop.SetValue(this, value);
-
-      }
-    }
   }
+
+
 
 }

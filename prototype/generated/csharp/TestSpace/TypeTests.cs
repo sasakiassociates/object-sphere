@@ -2,7 +2,9 @@ using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
+using System.Threading;
 
 namespace Sasaki.Objects.Tests
 {
@@ -12,17 +14,13 @@ namespace Sasaki.Objects.Tests
 
     public static string NewId() => Guid.NewGuid().ToString();
 
-    public static List<Types.CloudPoint> RandomPoints(int count)
+    public static List<Types.Point> RandomPoints(int count)
     {
       var rando = new Random();
-      var points = new List<Types.CloudPoint>(count);
+      var points = new List<Types.Point>(count);
       for(int i = 0; i < count; i++)
       {
-        points.Add(new Types.CloudPoint()
-        {
-          point = new Types.Point() {x = rando.NextDouble(), y = rando.NextDouble(), z = rando.NextDouble()},
-          meta = "other info"
-        });
+        points.Add(new Types.Point() {x = rando.NextDouble(), y = rando.NextDouble(), z = rando.NextDouble()});
       }
       return points;
     }
@@ -38,7 +36,7 @@ namespace Sasaki.Objects.Tests
 
         items.Add(new Types.ResultCloudData()
         {
-          values = data,
+          value = data,
           option = new Types.ViewContentOption() {content = $"Content-{i}", target = "Content-0", type = Types.ViewContentType.TARGET}
         });
       }
@@ -51,18 +49,20 @@ namespace Sasaki.Objects.Tests
       var obj = new Types.ResultCloud()
       {
         id = NewId(),
-        points = RandomPoints(100),
-        data = RandomResultData(100, 2)
+        point = RandomPoints(10),
+        data = RandomResultData(10, 2)
       };
+      var container = new Onto();
+      container["ResultCloud"] = obj;
+      
+      var serializer = JsonSerializer.Create(ObjectSphere.settings);
 
-      var serializer = JsonSerializer.CreateDefault();
       Types.ResultCloud result = null;
-      serializer.Formatting = Formatting.Indented;
       var path = @"D:\Projects\Sasaki\object-sphere\prototype\csharp-test.json";
 
       using(var handle = new JsonTextWriter(new StreamWriter(path)))
       {
-        serializer.Serialize(handle, obj);
+        serializer.Serialize(handle, container);
       }
 
       Assert.IsTrue(File.Exists(path));
@@ -75,18 +75,17 @@ namespace Sasaki.Objects.Tests
       Assert.IsNotNull(result);
 
       Assert.IsTrue(obj.id.Equals(result.id));
-      Assert.IsTrue(obj.points.Count == result.points.Count);
+      Assert.IsTrue(obj.point.Count == result.point.Count);
       Assert.IsTrue(obj.data.Count == result.data.Count);
 
-      for(int pIndex = 0; pIndex < obj.points.Count; pIndex++)
+      for(int pIndex = 0; pIndex < obj.point.Count; pIndex++)
       {
-        var p1 = obj.points[pIndex];
-        var p2 = result.points[pIndex];
+        var p1 = obj.point[pIndex];
+        var p2 = result.point[pIndex];
 
-        Assert.IsTrue(p1.meta.Equals(p2.meta));
-        Assert.IsTrue(p1.point.x.Equals(p2.point.x) &&
-                      p1.point.y.Equals(p2.point.y) &&
-                      p1.point.z.Equals(p2.point.z)
+        Assert.IsTrue(p1.x.Equals(p2.x) &&
+                      p1.y.Equals(p2.y) &&
+                      p1.z.Equals(p2.z)
         );
       }
 
@@ -98,11 +97,11 @@ namespace Sasaki.Objects.Tests
         Assert.IsTrue(r1.option.content.Equals(r2.option.content) &&
                       r1.option.target.Equals(r2.option.target));
 
-        for(int i = 0; i < r1.values.Count; i++)
+        for(int i = 0; i < r1.value.Count; i++)
         {
-          Assert.NotNull(r1.values[i]);
-          Assert.NotNull(r2.values[i]);
-          Assert.AreEqual(r1.values[i], r2.values[i]);
+          Assert.NotNull(r1.value[i]);
+          Assert.NotNull(r2.value[i]);
+          Assert.AreEqual(r1.value[i], r2.value[i]);
 
         }
 
