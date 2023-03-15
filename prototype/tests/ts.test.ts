@@ -53,6 +53,6 @@ function makeupto(ceil: number): string[] {
 
 const result = RandomResult();
 
-const snap = serialize(result);
+const snap = deserialize(result, serialize(result));
 
 console.log(JSON.stringify(snap, null, 2));
