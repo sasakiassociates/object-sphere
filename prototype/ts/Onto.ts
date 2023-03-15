@@ -1,4 +1,4 @@
-import { getSnapshot, model, Model, prop } from 'mobx-keystone';
+import { applySnapshot, getSnapshot, model, Model, prop } from 'mobx-keystone';
 
 
 @model('onto')
@@ -43,33 +43,30 @@ export default Onto;
  */
 
 export function serialize<T extends object>(obj: T) {
-    const tree = getSnapshot<T>(obj) as { $modelType: string };
-    const modelType = tree.$modelType.replace('onto/', '');
-
-    function _serialize(tree: { $modelType?: string }) {
+    function _serialize(tree: { $modelType: string }) {
         // Serialize
         delete tree.$modelType;
 
-        // Traverse
-        Object.values(tree).forEach((member: any) => {
-            if (typeof member !== 'number' && typeof member !== 'string') {
-                if (Array.isArray(member)) {
-                    member.forEach(_serialize);
-                }
-                else {
-                    _serialize(member);
-                }
-            }
-        });
-
+        _traverse(tree, _serialize);
         return tree;
     }
 
-
+    const tree = getSnapshot<T>(obj) as { $modelType: string };
+    const modelType = tree.$modelType.replace('onto/', '');
     return { [modelType]: _serialize(tree) };
 }
 
-export function deserialize<T>(klass: T, json: object) {
+export function deserialize<T extends object>(instance: T, json: any): T {
+    function _deserialize(tree: any, key: string) {
+        // Deserialize
+        tree.$modelType = `onto/${key}`;         
+
+        _traverse(tree, _deserialize);
+    }
+
+    _deserialize(json, Object.keys(json)[0]);
+    applySnapshot(instance, json);
+    return instance;
 }
 
 
@@ -79,4 +76,18 @@ export function deserialize<T>(klass: T, json: object) {
 
 function _concat(a: any[], b: any[]): any[] {
     return [...a, ...b];
+}
+
+function _traverse(tree, fn) {
+    Object.entries(tree).forEach(([key, member]: any[]) => {
+        if (typeof member !== 'number' && typeof member !== 'string') {
+            if (Array.isArray(member)) {
+                member.forEach(member => fn(member, key));
+            }
+            else {
+                fn(member, key);
+            }
+        }
+    });
+
 }
