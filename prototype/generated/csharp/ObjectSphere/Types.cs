@@ -34,7 +34,7 @@ namespace Sasaki.Objects
 
   #region Normal
 
-    public class Normal : Vector
+    public class Normal : IVector
     {
 
     #region members
@@ -100,7 +100,7 @@ namespace Sasaki.Objects
 
   #region Point
 
-    public class Point : Vector
+    public class Point : IVector
     {
 
     #region members
@@ -182,7 +182,7 @@ namespace Sasaki.Objects
       string name { get; set; }
     }
 
-    public interface Vector
+    public interface IVector
     {
       [JsonProperty("x")]
       double x { get; set; }
