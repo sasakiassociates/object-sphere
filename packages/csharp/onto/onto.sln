@@ -1,8 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OntoSharp", "onto-sharp\OntoSharp.csproj", "{D611F756-A3A8-4693-9D25-4040DFA56F56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OntoSharp", "OntoSharp\OntoSharp.csproj", "{D611F756-A3A8-4693-9D25-4040DFA56F56}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OntoTest", "OntoTest\OntoTest.csproj", "{DFC4B761-EADE-4DB2-ACC6-5AB3812DADF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewObjects", "..\..\..\..\..\ViewTo\ViewTo\Objects\ViewObjects\ViewObjects.csproj", "{DB62FE17-A72E-47C9-BE7A-52494404C5D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +20,9 @@ Global
 		{DFC4B761-EADE-4DB2-ACC6-5AB3812DADF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFC4B761-EADE-4DB2-ACC6-5AB3812DADF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFC4B761-EADE-4DB2-ACC6-5AB3812DADF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB62FE17-A72E-47C9-BE7A-52494404C5D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB62FE17-A72E-47C9-BE7A-52494404C5D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB62FE17-A72E-47C9-BE7A-52494404C5D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB62FE17-A72E-47C9-BE7A-52494404C5D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

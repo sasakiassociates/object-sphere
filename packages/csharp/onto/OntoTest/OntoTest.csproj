@@ -18,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\onto-sharp\OntoSharp.csproj" />
+      <ProjectReference Include="..\OntoSharp\OntoSharp.csproj" />
     </ItemGroup>
 
 </Project>
