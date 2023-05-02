@@ -8,7 +8,6 @@ namespace Stratosphere {
         public static T? Deserialize<T>(string json) {
             // First child is the root node itself, second child is the root node's data.
             JToken root = JObject.Parse(json).Children().ToList()[0].Children().ToList()[0];
-
             return root.ToObject<T>();
         }
 
