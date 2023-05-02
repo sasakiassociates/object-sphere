@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AssemblyName>Sasaki.Objects.ViewObject.Onto</AssemblyName>
+        <RootNamespace>Sasaki.Objects.ViewObjects.Onto</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\..\..\..\ViewTo\ViewTo\Objects\ViewObjects\ViewObjects.csproj" />
+      <ProjectReference Include="..\..\..\onto\OntoSharp\OntoSharp.csproj" />
+    </ItemGroup>
+
+</Project>
