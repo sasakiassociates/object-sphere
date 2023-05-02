@@ -49,8 +49,8 @@ public class Tests
     var de = Onto.Deserialize<PointNode>(json);
     Assert.That(de, Is.Not.Null);
     Assert.True(de.x == og.x && de.y == og.y && de.z == og.z);
-    
-    
+
+
   }
 
   [Test]
@@ -90,7 +90,7 @@ public class Tests
   public void Onto_NestedStuff()
   {
 
-    
+
     var values = new List<PointNode>();
     for(int i = 0; i < 10; i++)
     {

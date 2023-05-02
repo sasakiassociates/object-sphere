@@ -18,6 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\objects\ViewObjects\ViewObjectOnTo\ViewObjectOnTo.csproj" />
       <ProjectReference Include="..\OntoSharp\OntoSharp.csproj" />
     </ItemGroup>
 
