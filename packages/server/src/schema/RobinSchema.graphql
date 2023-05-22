@@ -1,0 +1,44 @@
+ type Query {
+    # returns true if auth something comes back in the auth connection
+    auth: Boolean
+    # find a give space by id
+    space(id: Int! ): Space
+
+    # grabs a list of spaces from a location id
+    spaces(id: Int!): [Space]
+
+    # searches for an organization by id
+    organization(id: Int!): Organization
+
+    # searches for a location by id
+    location(id: Int!): Location
+
+    # desks(id: Int!): [Desk!]!
+    
+  }
+  
+interface RobinObject{
+    id: Int!
+    name: String
+}
+
+type Location implements RobinObject{
+    id: Int!
+    name: String
+}
+
+type Space implements RobinObject{
+    id: Int!
+    name: String
+} 
+
+type Organization implements RobinObject{
+    id: Int!
+    name: String
+} 
+
+
+type Desk implements RobinObject {
+    id: Int!
+    name: String!
+  }
