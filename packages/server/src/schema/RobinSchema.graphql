@@ -24,12 +24,19 @@ interface RobinObject{
 
 type Location implements RobinObject{
     id: Int!
+    account_id: Int!
     name: String
+    latitude: Float
+    longitude: Float
+    address: String
 }
 
 type Space implements RobinObject{
     id: Int!
+    level_id: Int
     name: String
+    type: String
+    description: String
 } 
 
 type Organization implements RobinObject{

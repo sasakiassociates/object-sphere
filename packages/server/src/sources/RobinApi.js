@@ -18,14 +18,19 @@ import { RESTDataSource } from '@apollo/datasource-rest';
   }
 
   async getSpaces(id){
-    return this.get(`locations/${encodeURIComponent(id)}/spaces`);
+    const res =  await this.get(`locations/${encodeURIComponent(id)}/spaces`);
+    console.log(res.data);
+    return res.data;
   }
   async getSpace(id) {
-    return this.get(`spaces/${encodeURIComponent(id)}`);
+    const res = await this.get(`spaces/${encodeURIComponent(id)}`);
+    console.log(res.data);
+    return res.data;
   }
 
   async getLocation(id) {
     const res =  await this.get(`locations/${encodeURIComponent(id)}`);
+    console.log(res.data);
     return res.data;
   }
 
