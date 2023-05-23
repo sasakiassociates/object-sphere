@@ -25,8 +25,8 @@ import { RESTDataSource } from '@apollo/datasource-rest';
   }
 
   async getLocation(id) {
-    const res =  this.get(`locations/${encodeURIComponent(id)}`);
-    return res['data'];
+    const res =  await this.get(`locations/${encodeURIComponent(id)}`);
+    return res.data;
   }
 
   async getOrganization(id) {
