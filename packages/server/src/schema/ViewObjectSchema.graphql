@@ -1,0 +1,29 @@
+interface CloudPoint {
+    x: Int!
+    y: Int!
+    z: Int!
+    meta : String!
+}
+
+interface ResulData {
+    id: String
+    values : [Float!]!
+    info : ContextOption!
+}
+
+interface ContextOption{
+    target : ViewContext
+    content : ViewContext
+}
+
+interface ViewContext{
+    id: String
+    name: String!
+    contentType : String
+}
+
+interface ResultCloud {
+    Point: [CloudPoint!]!
+    ResultCloudData: ResultCloudData!
+}
+
