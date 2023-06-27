@@ -1,0 +1,10 @@
+schema:
+  src:
+    - schema/ViewObjectSchema.graphql
+generates:
+    ts/types.ts:
+      plugins:
+        - typescript
+    csharp/Types.cs:
+      plugins:
+        - c-sharp

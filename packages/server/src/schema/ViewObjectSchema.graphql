@@ -24,6 +24,6 @@ type ViewContext{
 
 type ResultCloud {
     Point: [CloudPoint!]!
-    ResultCloudData: ResultCloudData!
+    ResultCloudData: ResulData!
 }
 
